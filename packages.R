@@ -13,4 +13,7 @@ pacman::p_load(conflicted,
                emmeans, 
                agridat, 
                here, 
-               magrittr)
+               magrittr, 
+               broom, 
+               broom.mixed, 
+               openxlsx)
