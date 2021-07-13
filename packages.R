@@ -17,3 +17,4 @@ pacman::p_load(conflicted,
                broom, 
                broom.mixed, 
                openxlsx)
+library(rmarkdown)
