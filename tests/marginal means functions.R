@@ -182,10 +182,13 @@ MultiLoc_AcrossLoc <- MultiLoc %>%
          marginal_means = map(traitModel, get_marginal_means))
 
 
+# A test marginal means summary table
+test_emmeans_summary <- Format_emmeans_both()
+
 
 # TODO: Formatting emmeans for export to an excel workbook
 # A function to find location-level mean columns
-TraitLookup <- read_csv(paste0(here(),"/Data/HelperFiles/TraitLookup.csv"))
+TraitLookup <- read_csv(here("data", "TraitLookup.csv"))
 FormatMeans <- function(MeanData, TraitConversion = TraitLookup){
   
   # Text that comes before a "_" character in the column names (the location if such a character exists)
@@ -194,6 +197,8 @@ FormatMeans <- function(MeanData, TraitConversion = TraitLookup){
   # Find all unique location names
   UniqueLocs <- LocPrefixes[str_detect(colnames(MeanData), "_")] %>%
     unique()
+  
+  UniqueLocs <- UniqueLocs[UniqueLocs != "p"]
   
   # A function that takes a character and finds its minimum and maximum position in a vector
   ValRange <- function(Loc = "CAS", FullVec = LocPrefixes){
@@ -222,88 +227,79 @@ FormatMeans <- function(MeanData, TraitConversion = TraitLookup){
   # trait conversion table. 
   NewMeanData <- as.data.frame(MeanData)
   colnames(NewMeanData) <- NewColNames
-  colnames(NewMeanData) <- TraitConversion$NewName[match(names(NewMeanData), TraitConversion$OldName)]
+  #colnames(NewMeanData) <- TraitConversion$NewName[match(names(NewMeanData), TraitConversion$OldName)]
   
   # Return a list that that contains both the location names with their column number ranges, 
   # and the new formatted data. 
   return(list("LocationRanges" = LocRanges, "NewMeanData" = NewMeanData))
 }
 
-TestData_Mult <- FormatMeans(MultLocs)
-TestData_One  <- FormatMeans(OneLoc)
 
-FormattedMeans <- map(Means, FormatMeans)
-
-MakeMeanWorkbooks <- function(MeanData, TestName, ExportDir){
+# A function that creates a formatted excel workbook for each of the 
+# "FormattedMeans" dataframes
+CreateFormattedWorkbook <- function(FormattedMeanData, exportdir = here("data", "exports"), exportname = "temp.xlsx"){
   
-  FormattedMeans <- map(MeanData, FormatMeans)
+  # Pull the location ranges and mean data from the formatted means list.
+  # Also, get the full range of by-location columns
+  LocRanges         <- FormattedMeanData$LocationRanges
+  MeanData_OneTest  <- FormattedMeanData$NewMeanData
+  FullRange         <- LocRanges %>% unlist() %>% range()
   
-  # A function that creates a formatted excel workbook for each of the 
-  # "FormattedMeans" dataframes
-  CreateFormattedWorkbook <- function(FormattedMeanData){
-    
-    # Pull the location ranges and mean data from the formatted means list.
-    # Also, get the full range of by-location columns
-    LocRanges         <- FormattedMeanData$LocationRanges
-    MeanData_OneTest  <- FormattedMeanData$NewMeanData
-    FullRange         <- LocRanges %>% unlist() %>% range()
-    
-    # Create an excel workbook to add data to
-    TestWb <- createWorkbook()
-    
-    # Some styles for the main table and the header
-    MainTableStyle <- createStyle(halign      = "center",
-                                  borderStyle = "thin",
-                                  fontName    = "calibri",
-                                  fontSize    = 11)
-    
-    HeaderStyle <- createStyle(halign         = "center", 
-                               fontSize       = 11,
-                               textDecoration = "bold",
-                               borderStyle    = "thick",
-                               border = "TopBottomLeftRight")
-    
-    addWorksheet(TestWb, "LSMeans")
-    
-    writeData(TestWb, "LSMeans", "LSMEANS by LOCATION", startCol = 2, startRow = 1)
-    mergeCells(TestWb, "LSMeans", cols = (FullRange[[1]]):(FullRange[[2]]), rows = 1)
-    
-    writeData(TestWb, "LSMeans", "Overall LSMEANS", startCol = (FullRange[[2]] + 1), startRow = 2)
-    mergeCells(TestWb, "LSMeans", cols = (FullRange[[2]] + 1):ncol(MeanData_OneTest), rows = 2)
-    
-    # Write the location names to the start of each location's data and then
-    # merge the cells over these columns
-    for(i in seq_along(LocRanges)){
-      writeData(TestWb, "LSMeans", names(LocRanges)[[i]], startCol = LocRanges[[i]][[1]], startRow = 2)
-      mergeCells(TestWb, "LSMeans", cols = (LocRanges[[i]][[1]]):(LocRanges[[i]][[2]]), rows = 2)
-    }
-    
-    # Add the header style to the header rows
-    addStyle(TestWb, 
-             "LSMeans", 
-             HeaderStyle,
-             cols = 2:ncol(MeanData_OneTest), 
-             rows = 1:2, 
-             gridExpand = TRUE, 
-             stack = TRUE)
-    
-    # Write and format the LSMean data
-    writeData(TestWb, "LSMeans", MeanData_OneTest, startRow = 3, borders = "all", headerStyle = HeaderStyle)
-    addStyle(TestWb, "LSMeans", MainTableStyle, cols = 1:ncol(MeanData_OneTest), rows = 3:(nrow(MeanData_OneTest) + 3), gridExpand = TRUE, stack = TRUE)
-    
-    # This needs to be fixed, ultimately want to define a set of widths so that all the data can be seen 
-    # without manually fixing the column widths
-    width_vec <- map(names(MeanData_OneTest), function(x) max(nchar(as.character(x)) + 2, na.rm = TRUE)) 
-    
-    setColWidths(TestWb, 
-                 "LSMeans", 
-                 cols              = 1:ncol(MeanData_OneTest), 
-                 widths            = width_vec,
-                 ignoreMergedCells = TRUE)
-    
-    # Save the workbook
-    saveWorkbook(TestWb, file = paste0(ExportDir, "/", TestName, ".xlsx"), overwrite = TRUE)
+  # Create an excel workbook to add data to
+  TestWb <- createWorkbook()
+  
+  # Some styles for the main table and the header
+  MainTableStyle <- createStyle(halign      = "center",
+                                borderStyle = "thin",
+                                fontName    = "calibri",
+                                fontSize    = 11)
+  
+  HeaderStyle <- createStyle(halign         = "center", 
+                             fontSize       = 11,
+                             textDecoration = "bold",
+                             borderStyle    = "thick",
+                             border = "TopBottomLeftRight")
+  
+  addWorksheet(TestWb, "LSMeans")
+  
+  writeData(TestWb, "LSMeans", "LSMEANS by LOCATION", startCol = FullRange[[1]], startRow = 1)
+  mergeCells(TestWb, "LSMeans", cols = (FullRange[[1]]):(FullRange[[2]]), rows = 1)
+  
+  writeData(TestWb, "LSMeans", "Overall LSMEANS", startCol = (FullRange[[2]] + 1), startRow = 2)
+  mergeCells(TestWb, "LSMeans", cols = (FullRange[[2]] + 1):ncol(MeanData_OneTest), rows = 2)
+  
+  # Write the location names to the start of each location's data and then
+  # merge the cells over these columns
+  for(i in seq_along(LocRanges)){
+    writeData(TestWb, "LSMeans", names(LocRanges)[[i]], startCol = LocRanges[[i]][[1]], startRow = 2)
+    mergeCells(TestWb, "LSMeans", cols = (LocRanges[[i]][[1]]):(LocRanges[[i]][[2]]), rows = 2)
   }
   
+  # Add the header style to the header rows
+  addStyle(TestWb, 
+           "LSMeans", 
+           HeaderStyle,
+           cols = 2:ncol(MeanData_OneTest), 
+           rows = 1:2, 
+           gridExpand = TRUE, 
+           stack = TRUE)
   
+  # Write and format the LSMean data
+  writeData(TestWb, "LSMeans", MeanData_OneTest, startRow = 3, borders = "all", headerStyle = HeaderStyle)
+  addStyle(TestWb, "LSMeans", MainTableStyle, cols = 1:ncol(MeanData_OneTest), rows = 3:(nrow(MeanData_OneTest) + 3), gridExpand = TRUE, stack = TRUE)
+  
+  # This needs to be fixed, ultimately want to define a set of widths so that all the data can be seen 
+  # without manually fixing the column widths
+  width_vec <- map(names(MeanData_OneTest), function(x) max(nchar(as.character(x)) + 2, na.rm = TRUE)) 
+  
+  setColWidths(TestWb, 
+               "LSMeans", 
+               cols              = 1:ncol(MeanData_OneTest), 
+               widths            = width_vec,
+               ignoreMergedCells = TRUE)
+  
+  # Save the workbook
+  saveWorkbook(TestWb, file = paste0(exportdir, "/", exportname), overwrite = TRUE)
 }
+
+

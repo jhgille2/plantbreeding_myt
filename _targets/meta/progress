@@ -1,15 +1,3 @@
 name|type|parent|branches|progress
-Writeup|stem|Writeup|0|started
-Writeup|stem|Writeup|0|built
-YieldFile|stem|YieldFile|0|started
-YieldFile|stem|YieldFile|0|built
-ReadYield|stem|ReadYield|0|started
-ReadYield|stem|ReadYield|0|built
-MungeData|stem|MungeData|0|started
-MungeData|stem|MungeData|0|built
-MarginalMeans|stem|MarginalMeans|0|started
-MarginalMeans|stem|MarginalMeans|0|built
-ExportWorkbooks|stem|ExportWorkbooks|0|started
-ExportWorkbooks|stem|ExportWorkbooks|0|built
-Plots|stem|Plots|0|started
-Plots|stem|Plots|0|built
+CleanMeans|stem|CleanMeans|0|started
+CleanMeans|stem|CleanMeans|0|built

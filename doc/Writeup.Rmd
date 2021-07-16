@@ -24,7 +24,10 @@ knitr::opts_chunk$set(echo = FALSE)
 # # This is not needed when using tar_make() to render the document.
 ```
 
-## Analysis
+## Introduction
+Many large-scale agricultural research programs involve many parallel experiments that all share an experimental design. This is especially true in plant breeding programs where often lines will be grown in separate tests within the same year, and often in the same environments that all share a common experimental design. Once it comes time to analyse the data obtained from these experiments, a practitioner will typically have to fit the same statistical model on many of these experiments, and obtain the same summary data from these models. There are many ways which this analysis can be conducted. One way is to create separate data sets for each experiment, and fit a unique model to each of these data sets. However, even with a modest breeding program, the number of models to be fit quickly increases and along with it, the difficulty in managing the analysis workflow. 
+
+What is needed is a better data and analysis structure to both efficiently analyse the data at hand, and reduce the mental overhead of performing the analysis. Here, I'll show how making use of nested data frames and a little functional programming can make this task trivial
 
 ## Reproducibility
 

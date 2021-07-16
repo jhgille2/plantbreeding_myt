@@ -7,33 +7,31 @@ lapply(list.files("./R", full.names = TRUE), source)
 ## tar_plan supports drake-style targets and also tar_target()
 tar_plan(
   
-  # The path to the input file
-  tar_target(YieldFile, 
-             here("data", "AllYield.csv"), format = "file"), 
+  # Simulate data from an agricultural experiment
+  tar_target(SimulateData, 
+             SimTraits(nTests = 10, nYears = 3, nTraits = 5, nReps = 3, nLocs = 4, nGeno = 20)), 
   
-  # Read in this file
-  tar_target(ReadYield, 
-             read_csv(YieldFile)), 
-  
-  # Data cleaning
+  # Nest the simulated data into datasets ready to fit models to
   tar_target(MungeData, 
-             munge_yieldData(ReadYield)), 
-
-  # Calculate marginal means
+             munge_SimulatedData(SimulateData, meanTraits = tidyselect::starts_with("Trait_"))),
+  
+  # Calculate within and across location marginal means on the simulated data
   tar_target(MarginalMeans, 
-             calc_means(MungeData)), 
+             calc_marginal_means(MungeData)),
+  
+  # Clean up the marginal mean data
+  tar_target(CleanMeans, 
+             clean_marginal_means(MarginalMeans)),
   
   # Make some summary plots
   tar_target(Plots, 
              make_summary_plots(MarginalMeans)), 
   
-  # Export marginal means to formated workbooks
+  # Export marginal means to formatted workbooks
   tar_target(ExportWorkbooks, 
              export_mean_workbooks(MarginalMeans)), 
   
-# target = function_to_make(arg), ## drake style
-
-# tar_target(target2, function_to_make2(arg)) ## targets style
+  # tar_target(target2, function_to_make2(arg)) ## targets style
   tar_render(Writeup, "doc/Writeup.Rmd")
 
 )

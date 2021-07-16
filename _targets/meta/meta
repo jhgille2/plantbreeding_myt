@@ -1,18 +1,27 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|iteration|parent|children|seconds|warnings|error
+YieldFile|stem|55e8640146654b84|25790b1d6c1a6e8d|4e3739ef91745af0|458563510|C:/Users/Jay/Desktop/Documents/R/plantbreeding_myt/data/AllYield.csv|t18732.8429764482s|9d359b9ff60ca4fc|1252055|file|vector|||0||
+ReadYield|stem|8f61634a62ec03e1|7baa0a6395a2ef6d|68295162d02f4062|-106134246||t18821.6423251087s|1f252ae8e7929d0c|166272|rds|vector|||0.21|1523 parsing failures. row       col           expected actual|
+Writeup|stem|e22f511d22649ba1|7ec7a05a581b1eed|4745aa592080ea1d|-2019501384|doc/Writeup.html*doc/Writeup.Rmd|t18822.5880221134s|4613ece3612726bb|746828|file|vector|||1.6||
+SimulateData|stem|c5fc6d07a49886e6|f2dd41ebad888f81|c05343d011e9f305|505286234||t18823.944967007s|c128b86df5efb8ef|273271|rds|vector|||0.25||
+MungeData|stem|5d8cc109d4c54475|16db77fd05da3c27|b32510967ff31b8a|1493279666||t18824.0202341366s|37411b143a067508|596733|rds|vector|||0.14||
+Format_emmeans_both|function|51b627ef8d5036e1||||||||||||||
+pull_emmeans|function|40c30cef2debbf8d||||||||||||||
 Lmer_by_year|function|5f6cc5f7d46da73e||||||||||||||
 get_marginal_means|function|e09ea7358a6b907f||||||||||||||
 munge_yieldData|function|14836a1c76e52323||||||||||||||
-export_mean_workbooks|function|1ec315ebee9579e8||||||||||||||
+save_simulations|function|27d1ae7155182b1c||||||||||||||
 OneRepTraits|function|04010e55e64ca2d8||||||||||||||
 missing_pct|function|ca3d2a738b817d0e||||||||||||||
 LM_within_loc|function|8d9036516b70493b||||||||||||||
 missing_pct_byLoc|function|609a37595aac0b59||||||||||||||
-make_summary_plots|function|1ec315ebee9579e8||||||||||||||
 calc_means|function|dd27a3b17344a07c||||||||||||||
-Writeup|stem|b4f6ba88347201e5|7ec7a05a581b1eed|4745aa592080ea1d|-2019501384|doc/Writeup.html*doc/Writeup.Rmd|t18821.6423206064s|c1331b15aa88caea|743326|file|vector|||3.14||
-YieldFile|stem|55e8640146654b84|25790b1d6c1a6e8d|4e3739ef91745af0|458563510|C:/Users/Jay/Desktop/Documents/R/plantbreeding_myt/data/AllYield.csv|t18732.8429764482s|9d359b9ff60ca4fc|1252055|file|vector|||0||
-ReadYield|stem|8f61634a62ec03e1|7baa0a6395a2ef6d|68295162d02f4062|-106134246||t18821.6423251087s|1f252ae8e7929d0c|166272|rds|vector|||0.21|1523 parsing failures. row       col           expected actual|
-MungeData|stem|2b2723727f18fb4d|240eabdff7e541e6|38de310d74cced8d|1493279666||t18821.6423301435s|ea1f06f894308ce4|328225|rds|vector|||0.11||
-MarginalMeans|stem|5baefe50f3daea4d|5a6df698986603bf|f8e772a94f85cb20|-1651382545||t18821.6453075461s|f4b4c163564a6936|17006407|rds|vector|||253.61|Model failed to converge with maxgrad  0.00366937 tol  0.002, component 1|
-ExportWorkbooks|stem|825a16277ad3a8b1|b3245195fbf784ec|3bcfc8c967e9b82a|1213166277||t18821.6453082863s|10da61cba4cac40f|44|rds|vector|||0||
-Plots|stem|825a16277ad3a8b1|bedb1c9b1d6719f7|0cf2045e6ad73e1f|683828347||t18821.6453085062s|10da61cba4cac40f|44|rds|vector|||0||
+MarginalMeans|stem|21c49fc9d6b6d19c|55d7dbc08084bc5e|56d306e68fb5aa6c|-1651382545||t18824.0436921564s|44b8ff32e5b6074f|10623478|rds|vector|||173.16|Model failed to converge degenerate  Hessian with 1 negative eigenvalues|
+calc_marginal_means|function|ef05f06c30ead1ff||||||||||||||
+munge_SimulatedData|function|00b9e0013e8a93ec||||||||||||||
+SimTraits|function|f04ca5bebc5f3ff1||||||||||||||
+export_mean_workbooks|function|1ec315ebee9579e8||||||||||||||
+make_summary_plots|function|1ec315ebee9579e8||||||||||||||
+clean_marginal_means|function|f5383b1ea9a4b7e2||||||||||||||
+ExportWorkbooks|stem|825a16277ad3a8b1|b3245195fbf784ec|d3d52ff376ed1997|1213166277||t18824.0436932559s|10da61cba4cac40f|44|rds|vector|||0||
+Plots|stem|825a16277ad3a8b1|bedb1c9b1d6719f7|9ce9e17aea222b31|683828347||t18824.0436935684s|10da61cba4cac40f|44|rds|vector|||0||
+CleanMeans|stem|0df8b7ee7fe39edb|45e2579b039e71ab|3359e2e7be39d009|-1531430530||t18824.0522933731s|2cae10dbcfa14489|116357|rds|vector|||0.25||

@@ -9,6 +9,7 @@ pacman::p_load(conflicted,
                targets, 
                tarchetypes, 
                tidyverse, 
+               tidyselect, 
                lme4, 
                emmeans, 
                agridat, 
@@ -16,5 +17,6 @@ pacman::p_load(conflicted,
                magrittr, 
                broom, 
                broom.mixed, 
-               openxlsx)
+               openxlsx, 
+               qdapDictionaries)
 library(rmarkdown)
