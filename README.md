@@ -1,2 +1,2 @@
 # plantbreeding_myt
-Simple functions to process and analyze multi year/trait/trial agricultural data. Uses datasets from the agridat package. 
+Some functions to analyse agricultural data of a structure that I've seen a lot. Basically leveraging nesting/mapping functions from tidyverse to group data and apply lm/lmer/emmeans functions to the grouped data. My hope here is to have a collection of functions that are general enough to relatively easily adapt to new data so that the workflow can be reused without too much trouble.  
