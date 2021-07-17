@@ -28,4 +28,4 @@ calc_marginal_means|function|ef05f06c30ead1ff||||||||||||||
 munge_SimulatedData|function|00b9e0013e8a93ec||||||||||||||
 SimTraits|function|f04ca5bebc5f3ff1||||||||||||||
 clean_marginal_means|function|f5383b1ea9a4b7e2||||||||||||||
-Writeup|stem|b47df95d6f881b8e|0a68a9b8a6d483df|df88cd0def920e92|-2019501384|docs/Writeup.html*docs/Writeup.Rmd|t18825.7735799862s|af53814dd5fac7bb|3703656|file|vector|||5.86||
+Writeup|stem|16296b95a43dcafe|0a68a9b8a6d483df|df88cd0def920e92|-2019501384|docs/Writeup.html*docs/Writeup.Rmd|t18825.7875864626s|3888650d698b16e4|3703761|file|vector|||6.05||

@@ -143,7 +143,7 @@ We need two functions to fit the two models to be fit to the two data sets. Befo
   }
 ```
 
-The marginal means can also be extracted right from the fit models using the **emmeans** package. Here's a function to do that. 
+The marginal means can also be extracted right from the fit models using the [emmeans](https://github.com/rvlenth/emmeans) package. Here's a function to do that. 
 
 ```{r MarMeans, echo = TRUE}
   # A function to get a tibble of marginal means from a fit model
