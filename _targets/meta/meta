@@ -16,12 +16,16 @@ LM_within_loc|function|8d9036516b70493b||||||||||||||
 missing_pct_byLoc|function|609a37595aac0b59||||||||||||||
 calc_means|function|dd27a3b17344a07c||||||||||||||
 MarginalMeans|stem|21c49fc9d6b6d19c|55d7dbc08084bc5e|56d306e68fb5aa6c|-1651382545||t18824.0436921564s|44b8ff32e5b6074f|10623478|rds|vector|||173.16|Model failed to converge degenerate  Hessian with 1 negative eigenvalues|
+CleanMeans|stem|0df8b7ee7fe39edb|45e2579b039e71ab|3359e2e7be39d009|-1531430530||t18824.0522933731s|2cae10dbcfa14489|116357|rds|vector|||0.25||
+SplitData|stem|c6a587b5a51d9bce|25a8ffd03ff03a9a|be7e0f7e803fc21f|-1982882233||t18824.5110176575s|d5184a7d94376648|638423|rds|vector|||0.17||
+ExportWorkbooks|stem|825a16277ad3a8b1|b3245195fbf784ec|d3d52ff376ed1997|1213166277||t18824.0436932559s|10da61cba4cac40f|44|rds|vector|||0||
+Plots|stem|825a16277ad3a8b1|bedb1c9b1d6719f7|9ce9e17aea222b31|683828347||t18824.0436935684s|10da61cba4cac40f|44|rds|vector|||0||
 calc_marginal_means|function|ef05f06c30ead1ff||||||||||||||
 munge_SimulatedData|function|00b9e0013e8a93ec||||||||||||||
 SimTraits|function|f04ca5bebc5f3ff1||||||||||||||
 export_mean_workbooks|function|1ec315ebee9579e8||||||||||||||
+base_SplitData|function|dbf5930b1f81a358||||||||||||||
+base_calc_marginal_means|function|7b7ae5c02791ad43||||||||||||||
 make_summary_plots|function|1ec315ebee9579e8||||||||||||||
 clean_marginal_means|function|f5383b1ea9a4b7e2||||||||||||||
-ExportWorkbooks|stem|825a16277ad3a8b1|b3245195fbf784ec|d3d52ff376ed1997|1213166277||t18824.0436932559s|10da61cba4cac40f|44|rds|vector|||0||
-Plots|stem|825a16277ad3a8b1|bedb1c9b1d6719f7|9ce9e17aea222b31|683828347||t18824.0436935684s|10da61cba4cac40f|44|rds|vector|||0||
-CleanMeans|stem|0df8b7ee7fe39edb|45e2579b039e71ab|3359e2e7be39d009|-1531430530||t18824.0522933731s|2cae10dbcfa14489|116357|rds|vector|||0.25||
+MarginalMeans_base|stem|825a16277ad3a8b1|6a5a776111b14f47|55f164064b089558|-898403191||t18824.511018109s||44|rds|vector|||58.41||object LocData not found

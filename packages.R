@@ -18,5 +18,6 @@ pacman::p_load(conflicted,
                broom, 
                broom.mixed, 
                openxlsx, 
-               qdapDictionaries)
-library(rmarkdown)
+               qdapDictionaries, 
+               pbapply, 
+               rmarkdown)
