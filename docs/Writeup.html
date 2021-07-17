@@ -234,6 +234,7 @@ pre code {
 ## 5 A     1     Trait_5 &lt;tibble [240 x 5]&gt;
 ## 6 B     1     Trait_1 &lt;tibble [240 x 5]&gt;</code></pre>
 <p>The data that I’ll be fitting the models to are stored in that special <strong>data</strong> column. You can see there that each element in that column is actually a tibble. Here’s what the first tibble looks like for the within location data.</p>
+<pre class="r"><code>WithinLoc$data[[1]]</code></pre>
 <pre><code>## # A tibble: 60 x 4
 ##     code geno  rep   value
 ##    &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
@@ -249,6 +250,7 @@ pre code {
 ## 10     4 A_4   1      34.1
 ## # ... with 50 more rows</code></pre>
 <p>The <strong>value</strong> column is the value of the trait for this first subset, going back to the rest of the within location data, we can see that it is the value of <strong>Trait_1</strong>. within test A, at location 1, during year 1. The across location data has a similar structure.</p>
+<pre class="r"><code>AcrossLoc$data[[1]]</code></pre>
 <pre><code>## # A tibble: 240 x 5
 ##     code geno  rep   loc   value
 ##    &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
@@ -464,10 +466,10 @@ Unnested_WithinLoc</code></pre>
 <summary>
 Reproducibility receipt
 </summary>
-<pre><code>## [1] &quot;2021-07-17 14:24:38 EDT&quot;</code></pre>
+<pre><code>## [1] &quot;2021-07-17 14:33:56 EDT&quot;</code></pre>
 <pre><code>## Local:    main C:/Users/Jay/Desktop/Documents/R/plantbreeding_myt
 ## Remote:   main @ origin (https://github.com/jhgille2/plantbreeding_myt.git)
-## Head:     [0fd9b51] 2021-07-17: Merge branch &#39;main&#39; of https://github.com/jhgille2/plantbreeding_myt</code></pre>
+## Head:     [9878e04] 2021-07-17: rename doc folder to &quot;docs&quot;</code></pre>
 <pre><code>## R version 4.1.0 (2021-05-18)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19043)

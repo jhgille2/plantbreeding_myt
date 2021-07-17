@@ -24,6 +24,6 @@ tar_plan(
              clean_marginal_means(MarginalMeans)),
   
   # Render the writeup
-  tar_render(Writeup, "doc/Writeup.Rmd")
+  tar_render(Writeup, "docs/Writeup.Rmd")
 
 )

@@ -80,12 +80,12 @@ head(AcrossLoc)
 ```
 
 The data that I'll be fitting the models to are stored in that special **data** column. You can see there that each element in that column is actually a tibble. Here's what the first tibble looks like for the within location data.
-```{r WithinLocFirst}
+```{r WithinLocFirst, echo = TRUE}
 WithinLoc$data[[1]]
 ```
 The **value** column is the value of the trait for this first subset, going back to the rest of the within location data, we can see that it is the value of **Trait_1**. within test A, at location 1, during year 1. The across location data has a similar structure. 
 
-```{r AcrossLocFirst}
+```{r AcrossLocFirst, echo = TRUE}
 AcrossLoc$data[[1]]
 ```
 The only difference here is that the loc column has been added to the nested tibble since this data set holds the all the data for a particular trait across locations for a given test grown in some year, again in this case test A and year 1.
