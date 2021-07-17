@@ -15,29 +15,13 @@ tar_plan(
   tar_target(MungeData, 
              munge_SimulatedData(SimulateData, meanTraits = tidyselect::starts_with("Trait_"))),
   
-  # Use base R tosplit data into dataframe lists equivalent to the 'data' column in the MungeData output above
-  tar_target(SplitData, 
-             base_SplitData(SimulateData, meanTraits = tidyselect::starts_with("Trait_"))),
-  
   # Calculate within and across location marginal means on the simulated data
   tar_target(MarginalMeans, 
              calc_marginal_means(MungeData)),
-  
-  # Use base R to fit models and extract marginal means
-  tar_target(MarginalMeans_base,
-             base_calc_marginal_means(SplitData)),
-  
+
   # Clean up the marginal mean data
   tar_target(CleanMeans, 
              clean_marginal_means(MarginalMeans)),
-  
-  # Make some summary plots
-  tar_target(Plots, 
-             make_summary_plots(MarginalMeans)), 
-  
-  # Export marginal means to formatted workbooks
-  tar_target(ExportWorkbooks, 
-             export_mean_workbooks(MarginalMeans)), 
   
   # Render the writeup
   tar_render(Writeup, "doc/Writeup.Rmd")
