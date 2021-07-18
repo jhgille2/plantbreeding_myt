@@ -7,7 +7,7 @@ More specifically, these functions are meant to solve two jobs:
 
 The need for job 1 arose because often our data is recorded in a "wide" format where each multiple phenotypic measurements are taken for a particular genotype, in a specific plot. This format makes sense for data entry, but makes analysis tedious. Pivoting the data for an experiment to a long format makes analysis trivial. Job 2 arose because we typically have many field experiments going on at the same time which are ultimately analyzed with the same statistical techniques. Rather than unnecessarily repeating code for each experiment, it is more time-efficient, and less error-prone to systematically apply one analysis function to a nested data structure.
 
-I have a [short writeup](https://jhgille2.github.io/plantbreeding_myt/Writeup.html) of the code here.
+I have a [short writeup of the code here.](https://jhgille2.github.io/plantbreeding_myt/Writeup.html)
 
 # TODO  
 - Add a step to assign roles to the columns of the dataset prior to transformation/model fitting. I want to look into using the [recipes](https://cran.r-project.org/web/packages/recipes/vignettes/Roles.html) package for doing this. Some sort of way to "tag" grouping vs measurement variables so that they can be passed to later steps that use these grouping/measurement variables to transform the data. There may even be a way to use the whole tidymodels framework for this analysis. My gut feeling right now is that would be overkill, but still probably worth looking into at least. I feel like this would help the workflow be more "data agnostic" and make applying it to new datasets easier in the future. 
