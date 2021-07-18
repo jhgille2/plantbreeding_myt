@@ -2,7 +2,7 @@
 Some functions to analyse agricultural data of a structure that I've seen come up a few times. Basically leveraging nesting/mapping functions from tidyverse to group data and apply lm/lmer/emmeans functions to the grouped data. My hope here is to have a collection of functions that are general enough to relatively easily adapt to new data so that the workflow can be reused without too much trouble.
 
 More specifically, these functions are meant to solve two jobs: 
-1. Clean (pivot) field data into a long, but tidy format. 
+1. Clean (pivot) field data into a long, but [tidy](https://vita.had.co.nz/papers/tidy-data.pdf) format. 
 2. Group this cleaned data into a nested structure so that an analysis technique can be applied to each of the independent groups (field experiments). 
 
 The need for job 1 arose because often our data is recorded in a "wide" format where each multiple phenotypic measurements are taken for a particular genotype, in a specific plot. This format makes sense for data entry, but makes analysis tedious. Pivoting the data for an experiment to a long format makes analysis trivial. Job 2 arose because we typically have many field experiments going on at the same time which are ultimately analyzed with the same statistical techniques. Rather than unnecessarily repeating code for each experiment, it is more time-efficient, and less error-prone to systematically apply one analysis function to a nested data structure.
